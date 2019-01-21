@@ -1,0 +1,12 @@
+version: '3'
+services:
+  latest:
+    build: ./python3.7
+    image: andrijdavid/fast-ai-api:latest
+  python3.6:
+    build: ./python3.6
+    image: andrijdavid/fast-ai-api:python3.6
+  python3.7:
+    build: ./python3.7
+    image: andrijdavid/fast-ai-api:python3.7
+
