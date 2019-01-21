@@ -1,0 +1,4 @@
+FROM tiangolo/uvicorn-gunicorn:python3.7
+RUN apt update && apt install -y python3-dev gcc cmake build-essential libboost-python-dev  \
+    && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir fastai dlib
