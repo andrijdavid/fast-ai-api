@@ -4,4 +4,4 @@ RUN apt update && apt install -y gcc cmake python3-dev build-essential libboost-
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir fastapi numpy 
-RUN pip install --no-cache-dir fastai dlib
+RUN pip install --no-cache-dir https://download.pytorch.org/whl/cpu/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl fastai dlib
