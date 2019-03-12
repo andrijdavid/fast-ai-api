@@ -1,6 +1,12 @@
 FROM andrijdavid/uvicorn-gunicorn:3-slim
 
-RUN apt update && apt -y upgrade && apt install -y gcc cmake python3-dev git build-essential libboost-python-dev libfreetype6-dev libpng12-dev pkg-config \
+RUN echo "deb http://deb.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
+RUN echo "deb-src http://deb.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb http://deb.debian.org/debian-security/ stretch/updates main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb-src http://deb.debian.org/debian-security/ stretch/updates main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb http://deb.debian.org/debian stretch-updates main contrib non-free" >> /etc/apt/sources.list
+RUN echo "deb-src http://deb.debian.org/debian stretch-updates main contrib non-free" >> /etc/apt/sources.list
+RUN apt update && apt install -y gcc cmake python3-dev git build-essential libboost-python-dev libfreetype6-dev libpng12-dev pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir numpy pyyaml mkl mkl-include setuptools cffi typing numpy 
