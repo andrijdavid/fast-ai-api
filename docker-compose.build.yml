@@ -7,14 +7,20 @@ services:
     build: ./python3.6
     image: andrijdavid/fast-ai-api:python3.6
   python3.7-alpine:
-    build: ./python3.7-alpine
-    image: andrijdavid/fast-ai-api:python3.7-alpine
+    build: ./python3.7-alpine3.8
+    image: andrijdavid/fast-ai-api:python3.7-alpine3.8
+  python3.7-alpine3.8:
+    build: ./python3.7-alpine3.8
+    image: andrijdavid/fast-ai-api:python3.7-alpine3.8    
   python3.7:
     build: ./python3.7
     image: andrijdavid/fast-ai-api:python3.7
   python3.6-alpine:
-    build: ./python3.7-alpine
-    image: andrijdavid/fast-ai-api:python3.6-alpine
+    build: ./python3.7-alpine3.8
+    image: andrijdavid/fast-ai-api:python3.6-alpine3.8
+  python3.6-alpine3.8:
+    build: ./python3.7-alpine3.8
+    image: andrijdavid/fast-ai-api:python3.6-alpine3.8
   pypy3:
     build: ./pypy3
     image: andrijdavid/fast-ai-api:pypy3
