@@ -23,7 +23,7 @@ RUN apk del --purge .build-deps build-base jpeg-dev \
     openblas openblas-dev musl-dev nghttp2-libs \
     && echo "|--> Cleaning" \
     && rm -rf /pytorch \
-    && find /usr/lib/python3.6 -name __pycache__ | xargs rm -r \
+    && find /usr/lib/python3.7 -name __pycache__ | xargs rm -r \
     && rm -rf /root/.cache \
     && rm -rf /root/.[acpw]* \
     && rm -rf /var/cache/apk/*
