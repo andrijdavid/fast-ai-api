@@ -6,14 +6,15 @@ RUN apk update && apk upgrade && apk --update add --no-cache  boost-python3 libg
     python3-dev libpng-dev freetype-dev  g++ libffi-dev libc6-compat git
 RUN apk add --update-cache --force-overwrite --no-cache  --virtual=.build-deps lapack jpeg-dev zlib-dev libjpeg build-base musl-dev openblas-dev lapack-dev libgcc
 RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
+RUN pip3 install --no-cache-dir numpy pyyaml mkl mkl-include setuptools cmake cffi typing
 RUN echo "|--> Install PyTorch" \
     && git clone --recursive https://github.com/pytorch/pytorch \
+    && export NO_CUDA=1 \ 
     && cd pytorch && python3 setup.py install \
     && echo "|--> Install Torch Vision" \
     && git clone --recursive https://github.com/pytorch/vision \
     && cd vision && python3 setup.py install 
-    
-RUN pip3 install --no-cache-dir numpy fastai dlib
+RUN pip3 install --no-cache-dir fastai dlib
 RUN pip3 uninstall --no-cache-dir -y pillow pil jpeg libtiff
 RUN CC="cc -mavx2" pip3 install --no-cache-dir -U --force-reinstall --no-binary :all: --compile pillow-simd
 # removing dependencies
