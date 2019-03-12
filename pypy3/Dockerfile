@@ -7,8 +7,8 @@ RUN pip install --no-cache-dir numpy pyyaml mkl mkl-include setuptools cffi typi
 RUN echo "|--> Install PyTorch" \
     && git clone --recursive https://github.com/pytorch/pytorch \
     && export NO_CUDA=1 \ 
-    && cd pytorch && python3 setup.py install \
+    && cd pytorch && pypy3 setup.py install \
     && echo "|--> Install Torch Vision" \
     && git clone --recursive https://github.com/pytorch/vision \
-    && cd vision && python3 setup.py install 
+    && cd vision && pypy3 setup.py install 
 RUN pip install --no-cache-dir fastai dlib
