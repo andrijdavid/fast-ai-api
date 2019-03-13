@@ -12,16 +12,18 @@ RUN echo "|--> Install PyTorch" \
     && git clone --recursive https://github.com/pytorch/pytorch \
     && export NO_CUDA=1 \ 
     && export NO_CAFFE2_OPS=1 \
+    && cd pytorch \
     && export latest_pytorch_tag=$(git describe --tags) \
     && echo checking out ${latest_pytorch_tag} \
     && git checkout ${latest_pytorch_tag} \
-    && cd pytorch && python3 setup.py install \
+    && python3 setup.py install \
     && echo "|--> Install Torch Vision" \
     && git clone --recursive https://github.com/pytorch/vision \
+    && cd vision \ 
     && export latest_pytorchv_tag=$(git describe --tags) \
     && echo checking out ${latest_pytorchv_tag} \
     && git checkout ${latest_pytorch_tag} \
-    && cd vision && python3 setup.py install 
+    && python3 setup.py install 
 RUN pip install --no-cache-dir fastai dlib
 RUN echo "|--> Cleaning" \
     && apt -y remove git \
