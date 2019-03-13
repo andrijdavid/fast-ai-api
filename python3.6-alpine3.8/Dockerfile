@@ -6,7 +6,7 @@ RUN apk update && apk --update add --no-cache git boost-python3 libgfortran gfor
     python3-dev libpng-dev freetype-dev g++ libffi-dev libc6-compat
 RUN apk add --update-cache --force-overwrite --no-cache  --virtual=.build-deps lapack jpeg-dev zlib-dev libjpeg build-base musl-dev openblas-dev lapack-dev libgcc
 RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
-RUN pip3 install --no-cache-dir numpy pyyaml mkl mkl-include setuptoolsS cffi typing
+RUN pip3 install --no-cache-dir numpy pyyaml mkl mkl-include setuptools cffi typing
 RUN echo "|--> Install PyTorch" \
     && git clone --recursive https://github.com/pytorch/pytorch \
     && export NO_CUDA=1 \ 
@@ -20,7 +20,7 @@ RUN CC="cc -mavx2" pip3 install --no-cache-dir -U --force-reinstall --no-binary 
 # removing dependencies
 RUN apk del --purge .build-deps build-base jpeg-dev \ 
     libpng-dev gfortran python3-dev musl \
-    openblas openblas-dev musl-dev nghttp2-libs \
+    openblas openblas-dev musl-dev nghttp2-libs git\
     && echo "|--> Cleaning" \
     && rm -rf /pytorch \
     && find /usr/lib/python3.6 -name __pycache__ | xargs rm -r \
