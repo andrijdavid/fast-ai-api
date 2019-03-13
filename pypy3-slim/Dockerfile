@@ -4,7 +4,7 @@ RUN echo "deb http://deb.debian.org/debian stretch main contrib non-free" > /etc
 RUN echo "deb http://deb.debian.org/debian-security/ stretch/updates main contrib non-free" >> /etc/apt/sources.list
 RUN echo "deb http://deb.debian.org/debian stretch-updates main contrib non-free" >> /etc/apt/sources.list
 
-RUN apt update && apt install -y gcc python3-dev git build-essential libboost-python-dev libfreetype6-dev libpng-dev pkg-config libnuma-dev \
+RUN apt update && apt install -y cmake gcc python3-dev git build-essential libboost-python-dev libfreetype6-dev libpng-dev pkg-config libnuma-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir numpy pyyaml mkl mkl-include setuptools cffi typing numpy 
