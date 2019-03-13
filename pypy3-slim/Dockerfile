@@ -19,6 +19,7 @@ RUN echo "|--> Install PyTorch" \
     && export latest_pytorch_tag=$(git describe --abbrev=0 --tags) \
     && echo checking out ${latest_pytorch_tag} \
     && git checkout ${latest_pytorch_tag} \
+    && git submodule update --init --recursive  \
     && pypy3 setup.py install \
     && echo "|--> Install Torch Vision" \
     && git clone --recursive https://github.com/pytorch/vision \
