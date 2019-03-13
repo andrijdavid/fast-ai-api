@@ -15,13 +15,14 @@ RUN echo "|--> Install PyTorch" \
     && export BUILD_TORCH=NO \
     && export USE_SYSTEM_NCCL=0 \
     && export USE_CUDNN=0 \
+    && export NO_MKLDNN=1 \
     && cd pytorch \     
     && export latest_pytorch_tag=$(git describe --abbrev=0 --tags) \
     && echo checking out ${latest_pytorch_tag} \
     && git checkout ${latest_pytorch_tag} \
     && git submodule update --init --recursive  \
-    && pypy3 setup.py install \
-    && echo "|--> Install Torch Vision" \
+    && pypy3 setup.py install 
+RUN echo "|--> Install Torch Vision" \
     && git clone --recursive https://github.com/pytorch/vision \
     && cd vision \ 
     && export latest_pytorchv_tag=$(git describe --abbrev=0 --tags) \
