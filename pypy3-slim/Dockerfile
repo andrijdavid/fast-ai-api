@@ -4,7 +4,7 @@ RUN echo "deb http://deb.debian.org/debian stretch main contrib non-free" > /etc
 RUN echo "deb http://deb.debian.org/debian-security/ stretch/updates main contrib non-free" >> /etc/apt/sources.list
 RUN echo "deb http://deb.debian.org/debian stretch-updates main contrib non-free" >> /etc/apt/sources.list
 
-RUN apt update && apt install -y cmake gcc python3-dev git build-essential libboost-python-dev libfreetype6-dev libpng-dev pkg-config libnuma-dev libkml-dev \
+RUN apt update && apt install -y cmake gcc python3-dev git build-essential libboost-python-dev libfreetype6-dev libpng-dev pkg-config libnuma-dev libmkl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir numpy pyyaml mkl mkl-include setuptools cffi typing numpy 
@@ -19,8 +19,8 @@ RUN echo "|--> Install PyTorch" \
     && export latest_pytorch_tag=$(git describe --abbrev=0 --tags) \
     && echo checking out ${latest_pytorch_tag} \
     && git checkout ${latest_pytorch_tag} \
-    && git submodule update --init --recursive  \
-    && pypy3 setup.py install --cmake
+    && git submodule update --init --recursive 
+RUN pypy3 setup.py install
 RUN echo "|--> Install Torch Vision" \
     && git clone --recursive https://github.com/pytorch/vision \
     && cd vision \ 
