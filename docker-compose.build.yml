@@ -3,12 +3,12 @@ services:
   latest:
     build: ./python3.7
     image: andrijdavid/fast-ai-api:latest
-  pypy3:
-    build: ./pypy3
-    image: andrijdavid/fast-ai-api:pypy3
-  pypy3-slim:
-    build: ./pypy3-slim
-    image: andrijdavid/fast-ai-api:pypy3-slim
+#  pypy3:
+#    build: ./pypy3
+#    image: andrijdavid/fast-ai-api:pypy3
+#  pypy3-slim:
+#    build: ./pypy3-slim
+#    image: andrijdavid/fast-ai-api:pypy3-slim
   python3.6:
     build: ./python3.6
     image: andrijdavid/fast-ai-api:python3.6
