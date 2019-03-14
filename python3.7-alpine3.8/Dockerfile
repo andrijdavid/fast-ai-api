@@ -1,10 +1,10 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7-alpine3.8
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
-RUN apk update && apk upgrade && apk --update add --no-cache  boost-python3 libgfortran gfortran cmake gcc libjpeg-turbo  \
-    python3-dev libpng-dev freetype-dev g++ libffi-dev libc6-compat git
-RUN apk add --update-cache --force-overwrite --no-cache  --virtual=.build-deps lapack jpeg-dev zlib-dev libjpeg build-base musl-dev openblas-dev lapack-dev libgcc
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" > /etc/apk/repositories && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
+RUN apk --update upgrade && apk --update add --no-cache boost-python3 libgfortran gfortran cmake gcc libjpeg-turbo  \
+    libpng-dev freetype-dev g++ libffi-dev libc6-compat git
+RUN apk add --update-cache --force-overwrite --no-cache --virtual=.build-deps lapack jpeg-dev zlib-dev libjpeg build-base musl-dev openblas-dev lapack-dev libgcc
 RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
 RUN pip3 install --no-cache-dir numpy pyyaml mkl mkl-include setuptools cffi typing
 RUN echo "|--> Install PyTorch" \
